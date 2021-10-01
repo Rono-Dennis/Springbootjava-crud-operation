@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+</head>
+<body>
+<div class="container text-center">
+
+    <h3>List of All Users</h3>
+    <div>
+        <table class="table table-purple table-hover">
+            <thead class="thead-purple">
+                <tr>
+                    <th scope="col">User ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Password</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="userRepository: ${listUsers}">
+                    <td th:text="${userRepository.id}"/>
+                    <td th:text="${userRepository.name}"/>
+                    <td th:text="${userRepository.email}"/>
+                    <td th:text="${userRepository.password}"/>
+                    <td th:text="${userRepository.gender}"/>
+                    <td th:text="${userRepository.phone}"/>
+
+                    <td>
+                        <a class="btn btn-primary" th:href="@{'/edit_user/' + ${userRepository.id}}" onclick="return confirm('Are you sure you want to edit the User details?')"><button style='font-size:16px;color:blue'>Edit <i class='fas fa-edit'></i></button></a></td>
+                    <td>
+                        <a class="btn-danger" th:href="@{'/delete_user/' + ${userRepository.id}}" onclick="return confirm('Are you sure you want to delete the user?')"><button style='font-size:16px;color:red'>Delete <i class='far fa-trash-alt'></i></button></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+<div align="center">
+
+</div>
+</body>
+</html>
